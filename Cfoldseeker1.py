@@ -106,12 +106,9 @@ def fetch_html_result(job_id, output_folder="results_html"):
 
 
 """
-We want to retrieve the Uniprot IDs (field 'target') for each pbd file (only for hits from the AFDB-proteome database)
+Goal: retrieve the Uniprot IDs (field 'target') for each pbd file (only for hits from the AFDB-proteome database)
 and sort them according to e-value (field 'eval')
-
-First, a function to get the complete Foldseek output from the ticket ID of completed jobs:
 """
-
 
 def save_dict_to_txt(dictionary: dict, filename: str):
     """
@@ -121,6 +118,9 @@ def save_dict_to_txt(dictionary: dict, filename: str):
         f.write(repr(dictionary))
     print(f"Saved {filename}")
 
+"""
+First, a function to get the complete Foldseek output from the ticket ID of completed jobs:
+"""
 
 def get_full_Foldseek_results(folder_path, max_workers=5):
     tickets = submit_all(folder_path=FOLDER_PATH,
@@ -146,7 +146,6 @@ def get_full_Foldseek_results(folder_path, max_workers=5):
 A function to extract the Uniprot IDs of the top 10 hits from the AFDB-proteome db with an e-value < 1e-5 and 
 sort them from lowest to highest (most significant hit on top)
 """
-
 
 def get_top10_Uniprot_ids(all_results, evalue):
     Uniprot_ids = {}  # key: pdb file, value: list of Uniprot IDs of top 10 most significant hits
@@ -190,9 +189,6 @@ def foldseek_main(input, evalue):
     return top10_ids
 
 
-# Note: e-values for fold_sco5089_model_0.cif greater than 1e-5? (no significant hits)
-
-
 # Connection function for ID-mapping
 def map_uniprot_to_ncbi(uniprot_ids, mapping_file):
     uniprot_to_name = {uid: name for name, ids in uniprot_ids.items() for uid in ids}
@@ -228,15 +224,7 @@ def get_genomic_coordinates(gene_id: int) -> tuple:
     start_values = []
     end_values = []
 
-    """
-    Problem: By simply selecting the lowest Seq-interval_from and highest Seq-interval_to values in a gene record,
-    we get unexpectedly large spans (> 1000 kb) for genes with multiple annotation releases on NCBI. 
-    In such cases, the start coordinate often corresponds to the lowest value across different annotation releases 
-    (not always, sometimes it appears to be a seemingly random small number)
-    The end coordinate usually corresponds to the highest value across the annotation releases.
-
-    Solution: Filter on the most recent annotation release? (status current)
-    """
+    # Select the most recent annotation release (status "current") for genes with multiple annotation releases on NCBI.
     commentaries = root.findall(".//Gene-commentary")
     for comment in commentaries:
         text_tag = comment.find(".//Gene-commentary_text")
@@ -301,7 +289,6 @@ def main_coordinates(ncbi_ids):
 Step 1a. Retrieve scaffold IDs for each gene ID using efetch. 
 """
 
-
 def get_scaffold_ID(gene_ID: int) -> str:  # takes about 1 sec per gene ID
     Entrez.email = 'A.N.Other@example.com'
     handle = Entrez.efetch(db="gene", id=gene_ID, retmode="xml")
@@ -349,16 +336,15 @@ def get_scaffold_ID(gene_ID: int) -> str:  # takes about 1 sec per gene ID
 
 """
 Step 1b. Store results in scaffold_dictionary under gene ID as key.
-Use ThreadPoolExecutor to fetch scaffold IDs for multiple gene IDs in parallel?
+Use ThreadPoolExecutor to fetch scaffold IDs for multiple gene IDs in parallel.
 """
 
-
 def create_scaffold_dict(gene_IDS: list, max_workers=2) -> dict:
-    # 5 or 3 workers  gives HTTP Error 429: Too Many Requests
-    # too many requests to the NCBI Entrez API?
+    # 5 or 3 workers gives HTTP Error 429: Too Many Requests
+    # too many requests to the NCBI Entrez API
     scaffold_dict = {}
 
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:  # a little bit faster with 2 workers
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:  
         futures = {}
         count = 0
         for gene_ID in gene_IDS:
@@ -388,9 +374,8 @@ def create_scaffold_dict(gene_IDS: list, max_workers=2) -> dict:
 
 
 """
-Step 2. Link the scaffold ID to the corresponding assembly record ID with elink
+Step 2. Link the scaffold ID to the corresponding assembly record ID with elink.
 """
-
 
 def get_assembly_record_ID(scaffold_ID: str) -> int:
     Entrez.email = 'A.N.Other@example.com'
@@ -421,9 +406,8 @@ def get_assembly_record_ID(scaffold_ID: str) -> int:
 
 
 """
-Step 3a. Get assembly ID from assembly record ID with esummary
+Step 3a. Get assembly ID from assembly record ID with esummary.
 """
-
 
 def get_assembly_ID(assembly_record_ID: int) -> str:
     Entrez.email = 'A.N.Other@example.com'
@@ -439,10 +423,9 @@ def get_assembly_ID(assembly_record_ID: int) -> str:
 
 
 """
-Step 3b. Store results in assembly_dictionary under gene ID as key
-Use ThreadPoolExecutor again for parallelisation?
+Step 3b. Store results in assembly_dictionary under gene ID as key.
+Use ThreadPoolExecutor for parallelisation.
 """
-
 
 def create_assembly_dictionary(scaffold_dictionary: dict, max_workers=2) -> dict:
     # Helper function to link scaffold ID to assembly ID
