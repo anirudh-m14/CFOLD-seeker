@@ -1,60 +1,60 @@
 # CFOLD-seeker
-This repo contains the CFOLD-seeker package
+This repo contains the CFOLD-seeker package.  
+CFOLD-seeker is a tool to find homologous clusters starting from a known set of pdb or cif files which form a cluster.
 
-
-Dependencies:
-  * os (included with python >3.7)
-  * uuid (included with python >3.7)
-  * time (included with python >3.7)
+### Dependencies:
   * requests
-  pathlib (included with python >3.7)
-  concurrent.futures (included with python >3.7)
-  Bio
-  xml.etree.ElementTree (included with python >3.7)
-  requests (included with python >3.7)
-  pandas
-  numpy
-  ast (included with python >3.7)
-  sys (included with python >3.7)
+  * biopython
+  * pandas
+  * numpy
+### Dependencies included in python >3.7:
+  * os
+  * uuid
+  * time
+  * pathlib
+  * concurrent.futures
+  * xml.etree.ElementTree
+  * requests
+  * ast
+  * sys
 
-Installation and use of CFOLD-seeker:
-# before using this package, be sure that those libraries are installed
-  pip install requests pandas numpy biopython
+## Installation and use of CFOLD-seeker:
+before using this package, be sure to install these libraries:  
+  `pip install requests pandas numpy biopython`
 
-Download the CFOLD-seeker package.
-Inzip the package and put it in your prefered path.
-Don't remove any from the existing files from this packagee.
-Change in the command line to the path where CFOLD-seeker is located.
-write the next line in your command line to start using CFOLD-seeker:
-python CFoldSeekerCMD.py -h
-This should give the next code:
-"""
-Usage:
-    python CFoldSeekerCMD.py <input_path> [options]
+1. Download the CFOLD-seeker ZIP package.
+2. Unzip the package to your preferred path.
+3. Change directory to the path where CFOLD-seeker is located.
+4. Use the next command to start using CFOLD-seeker:  
+`python CFoldSeekerCMD.py -h`
+ 
+This gives the next output:  
 
-Description:
-    This program runs a 3-step pipeline:
-        1. Cfoldseeker1.py uses Foldseek to find homologs of the input pdb files 
-            and find the coordinates, assembly_IDs and scaffold_IDs of those homologous genes using Entrez-Direct.
-        2. Sort_csv.py sorts all the genes and gives an intermediate csv file as output.
-        3. cluster.py runs through the requirements (distance between genes, length of the whole cluster and the 
-            minimum number of genes) to be a cluster and gives the final resulting clusters.
+Usage:     
+&emsp; python CFoldSeekerCMD.py <input_path> [options]
 
+Description:  
+    &emsp; This program runs a 3-step pipeline:  
+    
+1. Cfoldseeker1.py uses Foldseek to find homologs of the input pdb or cif files and find the coordinates, assembly_IDs and scaffold_IDs of those homologous genes using Entrez-Direct.  
+2. Sort_csv.py sorts all the genes and gives an intermediate csv file as output.  
+3. cluster.py runs through the requirements (distance between genes, length of the whole cluster and the minimum number of genes) to be a cluster and gives the final resulting clusters.
 
-Options:
-    -h, --help              Show this help message.
-    --output=PATH           Give the output file path. If not defined by the user, the output will be generated in the 
-                                working directory.
-    --mapping=PATH          Give the mapping file path which is used to run the ID mapping from Uniprot to NCBI locally.
-                                If not defined by the user, the mapping file is expected to be in the working directory.
-                                The basic mapping file is part of the CFoldSeeker package.
-    --evalue=X              Give a numerical value for the maximum evalue used for Foldseek. If not defined by the user
-                                , 1e-5 is taken as the default value.
-    --distance=X            Give a numerical value for the maximum distance between two genes of the cluster. If not 
-                                defined by the user, 5000 is taken as the default value.
-    --length=X              Give a numerical value for the maximum length of the whole cluster. If not defined by the 
-                                user, 10000 is taken as the default value.
-    --numberOfGenes=X              Give a numerical value for the minimum number of genes of the cluster. If not defined by 
-                                the user, 3 is taken as the default value.
-"""
-  
+Input_path:
+&emsp; the path where the pdb or cif files of the cluster are located 
+
+Options:  
+    &emsp; -h, --help  
+    &emsp; &emsp;         Show this help message.  
+    &emsp; --output=PATH  
+    &emsp; &emsp;     The output file path. If not defined by the user, the output will be generated in the working directory.  
+    &emsp; --mapping=PATH  
+    &emsp;  &emsp;   The mapping file path which is used to run the ID mapping from Uniprot to NCBI locally. If not defined by the user, the mapping file is expected to be in the working directory. The basic mapping file is part of the CFoldSeeker package.  
+    &emsp; --evalue=X  
+    &emsp; &emsp; A numerical value for the maximum evalue used for Foldseek. If not defined by the user, 1e-5 is taken as the default value.  
+    &emsp; --distance=X  
+    &emsp; &emsp; A numerical value for the maximum distance between two genes of the cluster. If not defined by the user, 5000 is taken as the default value.  
+    &emsp; --length=X  
+    &emsp; &emsp; A numerical value for the maximum length of the whole cluster. If not defined by the user, 10000 is taken as the default value.  
+    &emsp; --numberOfGenes=X  
+    &emsp; &emsp; A numerical value for the minimum number of genes of the cluster. If not defined by the user, 3 is taken as the default value.  
