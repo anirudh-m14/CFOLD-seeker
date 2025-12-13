@@ -3,10 +3,10 @@ This repo contains the CFOLD-seeker package
 
 
 Dependencies:
-  os (included with python >3.7)
-  uuid (included with python >3.7)
-  time (included with python >3.7)
-  requests
+  * os (included with python >3.7)
+  * uuid (included with python >3.7)
+  * time (included with python >3.7)
+  * requests
   pathlib (included with python >3.7)
   concurrent.futures (included with python >3.7)
   Bio
