@@ -16,21 +16,22 @@ Description:
         3. cluster.py runs through the requirements (distance between genes, length of the whole cluster and the 
             minimum number of genes) to be a cluster and gives the final resulting clusters.
 
+Input_path:   the path where the pdb or cif files of the cluster are located
 
 Options:
     -h, --help              Show this help message.
-    --output=PATH           Give the output file path. If not defined by the user, the output will be generated in the 
+    --output=PATH           The output file path. If not defined by the user, the output will be generated in the 
                                 working directory.
-    --mapping=PATH          Give the mapping file path which is used to run the ID mapping from Uniprot to NCBI locally.
+    --mapping=PATH          The mapping file path which is used to run the ID mapping from Uniprot to NCBI locally.
                                 If not defined by the user, the mapping file is expected to be in the working directory.
                                 The basic mapping file is part of the CFoldSeeker package.
-    --evalue=X              Give a numerical value for the maximum evalue used for Foldseek. If not defined by the user
+    --evalue=X              A numerical value for the maximum evalue used for Foldseek. If not defined by the user
                                 , 1e-5 is taken as the default value.
-    --distance=X            Give a numerical value for the maximum distance between two genes of the cluster. If not 
+    --distance=X            A numerical value for the maximum distance between two genes of the cluster. If not 
                                 defined by the user, 5000 is taken as the default value.
-    --length=X              Give a numerical value for the maximum length of the whole cluster. If not defined by the 
+    --length=X              A numerical value for the maximum length of the whole cluster. If not defined by the 
                                 user, 10000 is taken as the default value.
-    --numberOfGenes=X              Give a numerical value for the minimum number of genes of the cluster. If not defined by 
+    --numberOfGenes=X       A numerical value for the minimum number of genes of the cluster. If not defined by 
                                 the user, 3 is taken as the default value.
 """
 
