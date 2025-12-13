@@ -18,7 +18,7 @@ Dependencies:
   sys (included with python >3.7)
 
 Installation and use of CFOLD-seeker:
-#before using this package, be sure that those libraries are installed
+# before using this package, be sure that those libraries are installed
   pip install requests pandas numpy biopython
 
 Download the CFOLD-seeker package.
