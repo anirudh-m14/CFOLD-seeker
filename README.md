@@ -18,7 +18,7 @@ CFOLD-seeker is a tool to find homologous clusters starting from a known set of 
   * sys
 
 ## Installation and use of CFOLD-seeker:
-before using this package, be sure to install these libraries:  
+Before using this package, be sure to install these libraries:  
   `pip install requests pandas numpy biopython`
 
 1. Download the CFOLD-seeker ZIP package.
@@ -39,8 +39,8 @@ Description:
 2. Sort_csv.py sorts all the genes and gives an intermediate csv file as output.  
 3. cluster.py runs through the requirements (distance between genes, length of the whole cluster and the minimum number of genes) to be a cluster and gives the final resulting clusters.
 
-Input_path:
-&emsp; the path where the pdb or cif files of the cluster are located 
+Input_path:  
+&emsp; The path where the pdb or cif files of the cluster are located 
 
 Options:  
     &emsp; -h, --help  
