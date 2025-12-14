@@ -14,7 +14,6 @@ CFOLD-seeker is a tool to find homologous clusters starting from a known set of 
   * pathlib
   * concurrent.futures
   * xml.etree.ElementTree
-  * requests
   * ast
   * sys
 
