@@ -8,9 +8,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # ✅ Foldseek API endpoint
 FOLDSEEK_URL = "https://search.foldseek.com/api/ticket"
 
-#  Change your folder path here!
-FOLDER_PATH = r"C:\Users\aniru\Documents\KUL\Third Sem\Integrated Project\PDB_files"
-
 # ---------- STEP 1: Scan folder for PDB/CIF files ----------
 def get_pdb_files(folder_path):
     """
@@ -105,8 +102,8 @@ def fetch_html_result(job_id, output_folder="results_html"):
 
 
 # ---------- MAIN ----------
-if __name__ == "__main__":
-    tickets = submit_all(FOLDER_PATH, max_workers=5)
+def run(folder_path):
+    tickets = submit_all(folder_path, max_workers=5)
 
     print("\n📥 Fetching results for completed jobs...\n")
     for ticket in tickets:
@@ -117,3 +114,6 @@ if __name__ == "__main__":
                 print(f"⚠️ Could not fetch results for {ticket['job_id']}: {e}")
         else:
             print(f"⚠️ No job_id for {ticket['file']} — skipping result fetch.")
+
+if __name__ == "__main__":
+    run()

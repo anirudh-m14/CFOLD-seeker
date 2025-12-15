@@ -127,7 +127,7 @@ def run(output, distance, length, numberOfGenes):
     df_out.to_csv(path, index=False)
 
     print("✔ Cluster identification complete!")
-    print("✔ Removed clusters with < " + str(numberOfGenes) + "genes.")
+    print("✔ Removed clusters with < " + str(numberOfGenes) + " genes.")
     print("✔ Output saved to:", path)
     print(df_out.head(15))
 

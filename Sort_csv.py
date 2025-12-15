@@ -3,6 +3,7 @@ import os
 import numpy as np
 import ast
 
+INTERMEDIATE_TXT = "identified_clusters.csv"
 
 def run():
     with open("Scaffold_dictionary.txt", "r", encoding="utf-8") as f:

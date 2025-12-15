@@ -123,7 +123,7 @@ First, a function to get the complete Foldseek output from the ticket ID of comp
 """
 
 def get_full_Foldseek_results(folder_path, max_workers=5):
-    tickets = submit_all(folder_path=FOLDER_PATH,
+    tickets = submit_all(folder_path,
                          max_workers=max_workers)  # list of dictionaries with ticket_id, file path, job_id, status, error for each submission
 
     all_results = {}  # key: pdb file name, value: Foldseek results
@@ -495,8 +495,7 @@ def main_scaffold_assembly_ID(ncbi_ids):
     return final_scaffold_dict, final_assembly_dict
 
 
-#def run(input, mapping, evalue):
-if __name__ == "__main__":
+def run(input, mapping, evalue):
     # foldseek_main() is only giving top10 results, for testing, this can be changed later easily
     top_ids = foldseek_main(input, evalue)
     print("✔ Search for homologs using Foldseek complete!")
@@ -520,5 +519,5 @@ if __name__ == "__main__":
     save_dict_to_txt(final_assembly_dict, "Assembly_dictionary.txt")
 
 
-#if __name__ == "__main__":
-    #run()
+if __name__ == "__main__":
+    run()
