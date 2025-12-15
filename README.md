@@ -23,8 +23,9 @@ Before using this package, be sure to install these libraries:
 
 1. Download the CFOLD-seeker ZIP package.
 2. Unzip the package to your preferred path.
-3. Change directory to the path where CFOLD-seeker is located.
-4. Use the next command to start using CFOLD-seeker:  
+3. Open the idmapping_geneid.tsv and download as txt file. Use an online txt to tsv converter and put the resulting tsv file into the same path as CFOLD-seeker.
+4. Change directory to the path where CFOLD-seeker is located.
+5. Use the next command to start using CFOLD-seeker:  
 `python CFoldSeekerCMD.py -h`
  
 This gives the next output:  
