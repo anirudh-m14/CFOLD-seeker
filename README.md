@@ -21,9 +21,9 @@ CFOLD-seeker is a tool to find homologous clusters starting from a known set of 
 Before using this package, be sure to install these libraries:  
   `pip install requests pandas numpy biopython`
 
-1. Download the CFOLD-seeker ZIP package.
-2. Unzip the package to your preferred path.
-3. Open the idmapping_geneid.tsv and download as txt file. Use an online txt to tsv converter and put the resulting tsv file into the same path as CFOLD-seeker.
+1. Open the latest release on the right-end side of the github page.
+2. Download the CFOLD-seeker ZIP-file and the idmapping_geneid.tsv from the latest release.
+3. Unzip the package to your preferred path and add the idmapping_geneid.tsv to this path.
 4. Change directory to the path where CFOLD-seeker is located.
 5. Use the next command to start using CFOLD-seeker:  
 `python CFoldSeekerCMD.py -h`
