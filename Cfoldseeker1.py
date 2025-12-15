@@ -4,7 +4,6 @@ import time
 import requests
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from Tic_sys import FOLDER_PATH
 
 from Bio import Entrez
 import xml.etree.ElementTree as ET
